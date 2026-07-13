@@ -180,11 +180,11 @@
   }
   .hero-inner { position: relative; z-index: 2; }
   .hero-crest {
-    width: 46px;
+    width: clamp(74px, 9vw, 116px);
     height: auto;
-    margin: 0 auto 26px;
-    opacity: 0.92;
-    filter: drop-shadow(0 2px 10px rgba(0,0,0,0.5));
+    margin: 0 auto 28px;
+    opacity: 0.95;
+    filter: drop-shadow(0 4px 16px rgba(0,0,0,0.55));
   }
   .hero-kicker {
     font-size: 11px;
@@ -270,7 +270,8 @@
   }
 
   /* ===== RANGE ===== */
-  .range { padding: clamp(64px, 10vh, 100px) 0; border-bottom: 1px solid var(--hair); }
+  .range { position: relative; padding: clamp(64px, 10vh, 100px) 0; border-bottom: 1px solid var(--hair); overflow: hidden; }
+  .range .wrap { position: relative; z-index: 1; }
   .range-head { display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 16px; margin-bottom: 40px; }
   .range-list {
     display: flex;
@@ -306,43 +307,24 @@
     color: var(--gold-deep);
   }
 
-  .bottles {
-    margin-top: 56px;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 24px;
+  .range-deco {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 240px;
+    max-width: 24vw;
+    z-index: 0;
+    opacity: 0.5;
+    filter: grayscale(0.55) sepia(0.22) brightness(0.82) contrast(0.92);
+    -webkit-mask-image: radial-gradient(ellipse 58% 72% at 50% 50%, black 30%, transparent 86%);
+    mask-image: radial-gradient(ellipse 58% 72% at 50% 50%, black 30%, transparent 86%);
+    pointer-events: none;
   }
-  .bottle-card {
-    background: linear-gradient(180deg, #FBF6E7, #EFE1BC);
-    border-radius: 2px;
-    padding: 26px 24px 22px;
-    text-align: center;
-    box-shadow: 0 18px 40px var(--shadow);
-  }
-  .bottle-card img {
-    width: 100%;
-    max-width: 168px;
-    height: 220px;
-    object-fit: contain;
-    margin: 0 auto 16px;
-    display: block;
-    mix-blend-mode: multiply;
-  }
-  .bottle-card-name {
-    font-family: 'Cormorant Garamond', serif;
-    font-weight: 600;
-    font-size: 17px;
-    color: #2A2110;
-    margin-bottom: 4px;
-  }
-  .bottle-card-meta {
-    font-size: 10.5px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: #7A6B3E;
-  }
-  @media (max-width: 560px) {
-    .bottles { grid-template-columns: 1fr; max-width: 260px; margin-left: auto; margin-right: auto; }
+  .range-deco img { width: 100%; height: auto; display: block; }
+  .range-deco.left { left: -54px; }
+  .range-deco.right { right: -54px; }
+  @media (max-width: 900px) {
+    .range-deco { display: none; }
   }
 
   /* ===== ETHICS / FACTS ===== */
@@ -752,6 +734,8 @@
 </section>
 
 <section class="range">
+  <div class="range-deco left" aria-hidden="true"><img src="ambre.webp" alt="" /></div>
+  <div class="range-deco right" aria-hidden="true"><img src="ambre-esb.webp" alt="" /></div>
   <div class="wrap">
     <div class="range-head">
       <div>
@@ -782,19 +766,6 @@
       </div>
     </div>
     <div class="range-foot">Every bottle — no additives · no added sugar · no compromise</div>
-
-    <div class="bottles">
-      <div class="bottle-card">
-        <img src="ambre.webp" alt="Ampov Craft Amber Rum, 45%, ex-Porto cask" />
-        <div class="bottle-card-name">Craft Amber Rum</div>
-        <div class="bottle-card-meta">45% — Ex-Porto Cask</div>
-      </div>
-      <div class="bottle-card">
-        <img src="ambre-esb.webp" alt="Ampov Premium Dark Craft Rum, 40%, ex-Cognac cask" />
-        <div class="bottle-card-name">Premium Dark Rum</div>
-        <div class="bottle-card-meta">40% — Ex-Cognac Cask</div>
-      </div>
-    </div>
   </div>
 </section>
 
