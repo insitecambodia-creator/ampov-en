@@ -595,9 +595,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   })();
 
   (function () {
-    // Delivers straight to contact@ampov-distillery.com via FormSubmit (no backend needed).
-    // Swap this for the n8n Production Webhook URL later if bookings should also land in a Sheet.
-    var FORM_ENDPOINT = 'https://formsubmit.co/ajax/contact@ampov-distillery.com';
+    // TODO: replace with the real n8n Production Webhook URL once the
+    // "Ampov — Visit Booking" workflow is imported and activated in n8n.
+    var FORM_ENDPOINT = 'https://YOUR-N8N-INSTANCE/webhook/ampov-visit-booking';
 
     var form = document.getElementById('bookingForm');
     var status = document.getElementById('formStatus');
@@ -614,9 +614,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       if (data._honey) return; // honeypot tripped — silently drop
       delete data._honey;
       data.submitted_at = new Date().toISOString();
-      data._subject = 'New Distillery Visit Booking — ' + data.full_name;
-      data._template = 'table';
-      data._captcha = 'false';
 
       submitBtn.disabled = true;
       status.textContent = 'Sending…';
@@ -624,14 +621,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       fetch(FORM_ENDPOINT, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)
       })
         .then(function (res) {
           if (!res.ok) throw new Error('Request failed');
-          return res.json();
-        })
-        .then(function () {
           status.textContent = 'Thank you — your booking request has been sent. We\'ll confirm by email shortly.';
           status.className = 'form-status ok';
           form.reset();
