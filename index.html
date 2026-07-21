@@ -44,24 +44,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   }
 
   :root {
-    color-scheme: dark;
-    --ink:        #0D0D0B;
-    --panel:      #17160F;
-    --panel-2:    #100F0B;
-    --hair:       rgba(201,168,76,0.16);
-    --hair-strong:rgba(201,168,76,0.32);
-    --gold:       #C9A84C;
-    --gold-soft:  #E8C97A;
-    --gold-deep:  #9C7A2E;
-    --cream:      #F3EAD2;
-    --cream-dim:  rgba(243,234,210,0.62);
-    --cream-faint:rgba(243,234,210,0.4);
-    --green:      #6FA070;
-    --green-fill: #23391F;
-    --shadow:     rgba(0,0,0,0.35);
-    --radius: 2px;
-  }
-  :root[data-theme="light"] {
     color-scheme: light;
     --ink:        #F5EDD6;
     --panel:      #EFE5C9;
@@ -77,25 +59,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     --green:      #2C4A2E;
     --green-fill: #DCE6DA;
     --shadow:     rgba(90,70,20,0.12);
-  }
-  @media (prefers-color-scheme: light) {
-    :root:not([data-theme="dark"]) {
-      color-scheme: light;
-      --ink:        #F5EDD6;
-      --panel:      #EFE5C9;
-      --panel-2:    #E7DBB9;
-      --hair:       rgba(13,13,11,0.12);
-      --hair-strong:rgba(13,13,11,0.24);
-      --gold:       #9C7A2E;
-      --gold-soft:  #7A5F20;
-      --gold-deep:  #6B5218;
-      --cream:      #17150F;
-      --cream-dim:  rgba(23,21,15,0.68);
-      --cream-faint:rgba(23,21,15,0.46);
-      --green:      #2C4A2E;
-      --green-fill: #DCE6DA;
-      --shadow:     rgba(90,70,20,0.12);
-    }
+    --radius: 2px;
   }
 
   * { box-sizing: border-box; }
@@ -471,23 +435,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     opacity: 0.7;
   }
 
-  .theme-toggle {
-    position: fixed;
-    top: 18px;
-    right: 18px;
-    z-index: 50;
-    background: var(--panel-2);
-    border: 1px solid var(--hair-strong);
-    color: var(--gold);
-    font-family: 'Montserrat', sans-serif;
-    font-size: 10px;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    padding: 9px 14px;
-    cursor: pointer;
-    border-radius: var(--radius);
-  }
-  .theme-toggle:hover { color: var(--gold-soft); border-color: var(--gold-soft); }
 
   @media (prefers-reduced-motion: no-preference) {
     .reveal { animation: rise 0.9s ease both; }
@@ -510,8 +457,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M3MN8NK2"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
-
-<button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle light and dark theme">Dark</button>
 
 <header class="hero">
   <div class="hero-photo" aria-hidden="true"></div>
@@ -854,30 +799,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="foot-copy">© 2026 Ampov Distillery, Phnom Penh</div>
   </div>
 </footer>
-
-<script>
-  (function () {
-    var root = document.documentElement;
-    var btn = document.getElementById('themeToggle');
-    var stored = null;
-    try { stored = localStorage.getItem('ampov-theme'); } catch (e) {}
-    var prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
-    var current = stored || (prefersLight ? 'light' : 'dark');
-
-    function apply(theme) {
-      root.setAttribute('data-theme', theme);
-      btn.textContent = theme === 'dark' ? 'Dark' : 'Light';
-      btn.setAttribute('aria-pressed', theme === 'dark' ? 'false' : 'true');
-    }
-    apply(current);
-
-    btn.addEventListener('click', function () {
-      current = current === 'dark' ? 'light' : 'dark';
-      apply(current);
-      try { localStorage.setItem('ampov-theme', current); } catch (e) {}
-    });
-  })();
-</script>
 
 </body>
 </html>

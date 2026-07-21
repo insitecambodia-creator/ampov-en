@@ -44,24 +44,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   }
 
   :root {
-    color-scheme: dark;
-    --ink:        #0D0D0B;
-    --panel:      #17160F;
-    --panel-2:    #100F0B;
-    --field:      #1C1B14;
-    --hair:       rgba(201,168,76,0.16);
-    --hair-strong:rgba(201,168,76,0.32);
-    --gold:       #C9A84C;
-    --gold-soft:  #E8C97A;
-    --gold-deep:  #9C7A2E;
-    --cream:      #F3EAD2;
-    --cream-dim:  rgba(243,234,210,0.62);
-    --cream-faint:rgba(243,234,210,0.4);
-    --green:      #6FA070;
-    --red:        #D77A6B;
-    --shadow:     rgba(0,0,0,0.35);
-  }
-  :root[data-theme="light"] {
     color-scheme: light;
     --ink:        #F5EDD6;
     --panel:      #EFE5C9;
@@ -78,26 +60,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     --green:      #2C4A2E;
     --red:        #A8402F;
     --shadow:     rgba(90,70,20,0.12);
-  }
-  @media (prefers-color-scheme: light) {
-    :root:not([data-theme="dark"]) {
-      color-scheme: light;
-      --ink:        #F5EDD6;
-      --panel:      #EFE5C9;
-      --panel-2:    #E7DBB9;
-      --field:      #FBF6E7;
-      --hair:       rgba(13,13,11,0.12);
-      --hair-strong:rgba(13,13,11,0.24);
-      --gold:       #9C7A2E;
-      --gold-soft:  #7A5F20;
-      --gold-deep:  #6B5218;
-      --cream:      #17150F;
-      --cream-dim:  rgba(23,21,15,0.68);
-      --cream-faint:rgba(23,21,15,0.46);
-      --green:      #2C4A2E;
-      --red:        #A8402F;
-      --shadow:     rgba(90,70,20,0.12);
-    }
   }
 
   * { box-sizing: border-box; }
@@ -154,12 +116,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     align-items: center;
     justify-content: space-between;
     padding: 16px clamp(22px, 5vw, 48px);
-    background: rgba(13,13,11,0.9);
+    background: rgba(245,237,214,0.9);
     backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--hair);
   }
-  :root[data-theme="light"] .topbar { background: rgba(245,237,214,0.9); }
-  @media (prefers-color-scheme: light) { :root:not([data-theme="dark"]) .topbar { background: rgba(245,237,214,0.9); } }
   .topbar-back {
     font-size: 10.5px;
     letter-spacing: 0.16em;
@@ -170,19 +130,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     transition: color 0.15s, border-color 0.15s;
   }
   .topbar-back:hover { color: var(--gold-soft); border-color: var(--gold-soft); }
-  .theme-toggle {
-    background: var(--panel-2);
-    border: 1px solid var(--hair-strong);
-    color: var(--gold);
-    font-family: 'Montserrat', sans-serif;
-    font-size: 10px;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    padding: 8px 13px;
-    cursor: pointer;
-    border-radius: 2px;
-  }
-  .theme-toggle:hover { color: var(--gold-soft); border-color: var(--gold-soft); }
 
   /* ===== HERO ===== */
   .hero {
@@ -264,9 +211,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     border: 1px solid var(--hair);
     margin-top: 8px;
   }
-  .info-cell { background: var(--ink); padding: 24px 22px; }
-  :root[data-theme="light"] .info-cell { background: var(--panel); }
-  @media (prefers-color-scheme: light) { :root:not([data-theme="dark"]) .info-cell { background: var(--panel); } }
+  .info-cell { background: var(--panel); padding: 24px 22px; }
   .info-label {
     font-size: 10px;
     letter-spacing: 0.2em;
@@ -389,7 +334,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <div class="topbar">
   <a class="topbar-back" href="https://rum.ampov-distillery.com">← Ampov Rhum</a>
-  <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle light and dark theme">Dark</button>
 </div>
 
 <header class="hero">
@@ -555,28 +499,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </footer>
 
 <script>
-  (function () {
-    var root = document.documentElement;
-    var btn = document.getElementById('themeToggle');
-    var stored = null;
-    try { stored = localStorage.getItem('ampov-theme'); } catch (e) {}
-    var prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
-    var current = stored || (prefersLight ? 'light' : 'dark');
-
-    function apply(theme) {
-      root.setAttribute('data-theme', theme);
-      btn.textContent = theme === 'dark' ? 'Dark' : 'Light';
-      btn.setAttribute('aria-pressed', theme === 'dark' ? 'false' : 'true');
-    }
-    apply(current);
-
-    btn.addEventListener('click', function () {
-      current = current === 'dark' ? 'light' : 'dark';
-      apply(current);
-      try { localStorage.setItem('ampov-theme', current); } catch (e) {}
-    });
-  })();
-
   (function () {
     var today = new Date().toISOString().split('T')[0];
     document.getElementById('f-date').setAttribute('min', today);
