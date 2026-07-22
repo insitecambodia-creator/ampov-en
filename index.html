@@ -390,6 +390,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   }
   .visit-body { font-size: 13px; color: var(--cream-dim); line-height: 1.8; max-width: 62ch; }
   .visit-addr { font-size: 11.5px; color: var(--cream-faint); margin-top: 10px; letter-spacing: 0.02em; }
+  .visit-cta {
+    display: inline-block;
+    margin-top: 22px;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink);
+    background: var(--gold);
+    padding: 13px 28px;
+    text-decoration: none;
+    border-radius: 2px;
+    transition: background 0.15s, transform 0.15s;
+  }
+  .visit-cta:hover { background: var(--gold-soft); transform: translateY(-1px); }
 
   /* ===== FOOTER ===== */
   footer {
@@ -780,8 +794,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <div class="visit">
       <div class="visit-title">Visit the Distillery</div>
-      <p class="visit-body">A guided two-hour tour through the stills and the ageing cellar, ending in a tasting. Phnom Penh, by reservation — <a href="mailto:contact@ampov-distillery.com" style="color:var(--gold-soft);">contact@ampov-distillery.com</a></p>
+      <p class="visit-body">A guided tour through the stills and the ageing cellar, ending in a tasting. About 1 hour, Phnom Penh, by reservation — <a href="mailto:contact@ampov-distillery.com" style="color:var(--gold-soft);">contact@ampov-distillery.com</a></p>
       <div class="visit-addr">National Road #2, Phum Tuol Roka, Chak Angrae Kraom, Mean Chey, Phnom Penh, Cambodia</div>
+      <a class="visit-cta" href="https://visit.ampov-distillery.com">Book Your Visit</a>
     </div>
   </div>
 </section>
